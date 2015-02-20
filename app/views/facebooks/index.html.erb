@@ -1,5 +1,5 @@
 
-<p><%= link_to 'Create Status', new_facebook_path %><p>
+<p><%= link_to 'Create Facebook', new_facebook_path %><p>
 <br>
 <table>
   <thead>
@@ -14,9 +14,10 @@
       <tr>
       <td><%= link_to facebook.status, facebook_path(facebook) %></td>
       <td><%= facebook.user %></td>
-      <td><%= facebook.likes %></td>
-      <td><%= link_to "Edit Status", edit_facebook_path(facebook) %></td>
-      <td><%= link_to "Delete Status", facebook_path(facebook), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <td><%= facebook.likes %> </td>
+      <td><%= link_to "Like", like_path(:facebook => facebook.id), method: :post %></td>
+      <td><%= link_to "Edit Facebook", edit_facebook_path(facebook) %></td>
+      <td><%= link_to "Delete Facebook", facebook_path(facebook), method: :delete, data: {confirm: 'Are you sure?'} %></td>
     </tr>
     <% end %>
   </tbody>
