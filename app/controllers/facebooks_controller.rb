@@ -11,8 +11,9 @@ class FacebooksController <ApplicationController
   def create
     @facebook = Facebook.new(facebook_params)
     if @facebook.save
-      redirect_to facebook_path(@facebook)
+      redirect_to facebook_path(@facebook), notice: 'Status was successfully created!'
     else
+      flash.now[:alert] = "Error creating status :("
       render :new
     end
   end
@@ -28,8 +29,10 @@ class FacebooksController <ApplicationController
   def update
     @facebook = Facebook.find(params[:id])
     if @facebook.update(facebook_params)
-      redirect_to facebook_path(@facebook)
+
+      redirect_to facebook_path(@facebook), notice: "Status was successfully updated!"
     else
+      flash.now[:alert] = "Error updating status :("
       render :edit
     end
   end
@@ -37,7 +40,7 @@ class FacebooksController <ApplicationController
   def destroy
     @facebook = Facebook.find(params[:id])
     if @facebook.destroy
-      redirect_to facebook_path(@facebook)
+      redirect_to root_path, alert: "Status was successfully destroyed!"
     end
   end
 
