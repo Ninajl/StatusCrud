@@ -11,7 +11,7 @@ class FacebooksController <ApplicationController
   def create
     @facebook = Facebook.new(facebook_params)
     if @facebook.save
-      redirect_to facebook_path(facebook)
+      redirect_to facebook_path(@facebook)
     else
       render :new
     end
@@ -27,19 +27,23 @@ class FacebooksController <ApplicationController
 
   def update
     @facebook = Facebook.find(params[:id])
-    if @facebook.update
-      redirect_to facebook_path(facebook)
+    if @facebook.update(facebook_params)
+      redirect_to facebook_path(@facebook)
     else
       render :edit
+    end
   end
 
   def destroy
     @facebook = Facebook.find(params[:id])
     if @facebook.destroy
-      redirect_to facebook_path(facebook)
+      redirect_to facebook_path(@facebook)
+    end
   end
 
 
   private
   def facebook_params
+    params.require(:facebook).permit(:status, :user, :likes)
+  end
 end

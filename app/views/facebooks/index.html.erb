@@ -1,0 +1,23 @@
+
+<p><%= link_to 'Create Status', new_facebook_path %><p>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>User</th>
+      <th>Likes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @facebooks.each do |facebook| %>
+      <tr>
+      <td><%= facebook.status %></td>
+      <td><%= facebook.user %></td>
+      <td><%= facebook.likes %></td>
+      <td><%= link_to "Edit Status", edit_facebook_path(facebook) %></td>
+      <td><%= link_to "Delete Status", facebook_path(facebook), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
